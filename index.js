@@ -32,7 +32,7 @@ const bodyParser = require('body-parser');
 
     app.get('/delete/:id',function(req,res){
         Post.destroy({where : {'id': req.params.id}}).then(function(){
-            res.send("Post delete successfully")
+            res.render('back')
         }).catch(function(error){
             res.send("There was an error"+ error)
         })
