@@ -16,7 +16,7 @@ const bodyParser = require('body-parser');
     app.use(bodyParser.urlencoded({extended: false}));
     app.use(bodyParser.json());
 
-    //routs
+    //Routs
 
     app.get('/',function(req,res){
         Post.findAll({order: [['id', 'DESC']]}).then(function(posts){
