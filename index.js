@@ -6,7 +6,7 @@ const handlebars = require('express-handlebars');
 const bodyParser = require('body-parser');
 
 //Config
-    //Template Engine
+    //Template Engine 
 
     app.engine('handlebars', handlebars({defaultLayout: 'main'}));
     app.set('view engine', 'handlebars');
@@ -16,7 +16,7 @@ const bodyParser = require('body-parser');
     app.use(bodyParser.urlencoded({extended: false}));
     app.use(bodyParser.json());
 
-    //routs
+    //Routs
 
     app.get('/',function(req,res){
         Post.findAll({order: [['id', 'DESC']]}).then(function(posts){
