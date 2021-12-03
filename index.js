@@ -18,8 +18,24 @@ const bodyParser = require('body-parser');
 
     //routs
 
+    app.get('/',function(req,res){
+        Post.findAll({order: [['id', 'DESC']]}).then(function(posts){
+            res.render('home', {posts : posts})
+        }).catch(function(error){
+            res.send("There was an error"+ error)
+        })
+    });
+
     app.get('/cad', function(req,res){
         res.render('form')
+    });
+
+    app.get('/delete/:id',function(req,res){
+        Post.destroy({where : {'id': req.params.id}}).then(function(){
+            res.send("Post delete successfully")
+        }).catch(function(error){
+            res.send("There was an error"+ error)
+        })
     });
 
     app.post('/sended', function(req,res){
@@ -28,9 +44,9 @@ const bodyParser = require('body-parser');
             contents: req.body.contents
         
         }).then(function(){
-            res.send("Post created successfully")
-        }).catch(function(){
-            res.send("There was an error"+ Error)
+            res.redirect('/')
+        }).catch(function(error){
+            res.send("There was an error"+ error)
         })
     });
 
